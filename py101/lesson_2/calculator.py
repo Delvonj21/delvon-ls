@@ -6,7 +6,7 @@ def invalid_number(number_str):
         int(number_str)
     except ValueError:
         return True
-    
+
     return False
 
 prompt('Welcome to Calculator!')
@@ -30,16 +30,16 @@ operation = input()
 
 while operation not in ['1', '2', '3', '4']:
     prompt('You must choose 1, 2, 3, 4')
-    operation = input() 
+    operation = input()
 
 match operation:
     case '1':
         output = int(number1) + int(number2)
     case '2':
-        output = int(number1) - int(number2) 
-    case '3': 
+        output = int(number1) - int(number2)
+    case '3':
         output = int(number1) * int(number2)
-    case '4': 
-        output = int(number1) / int(number2) 
-    
+    case '4':
+        output = int(number1) / int(number2)
+
 prompt(f'The result is: {output}')
