@@ -1,18 +1,17 @@
 import json
 
-with open('calculator_messages.json', 'r' ) as file:
-    MESSAGES = json.load(file)
-
 def prompt(message):
     print(f'==> {message}')
 
 def invalid_number(number_str):
     try:
-        int(number_str)
+        float(number_str)
     except ValueError:
         return True
-
     return False
+
+with open('calculator_messages.json', 'r' ) as file:
+    MESSAGES = json.load(file)
 
 prompt(MESSAGES['welcome'])
 
@@ -40,13 +39,13 @@ while True:
 
     match operation:
         case '1':
-            output = int(number1) + int(number2)
+            output = float(number1) + float(number2)
         case '2':
-            output = int(number1) - int(number2)
+            output = float(number1) - float(number2)
         case '3':
-            output = int(number1) * int(number2)
+            output = float(number1) * float(number2)
         case '4':
-            output = int(number1) / int(number2)
+            output = float(number1) / float(number2)
 
     prompt(f'The result is: {output}')
 
