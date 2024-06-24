@@ -5,28 +5,40 @@ VALID_CHOICES = ['rock', 'paper', 'scissors']
 def prompt(message):
     print(f'==> {message}')
 
-prompt(f'Choose one: {', '.join(VALID_CHOICES)}')
-choice = input()
+def display_winner(player, computer):
+    if ((player == 'rock' and computer == 'scissors') or 
+        (player == 'paper' and computer== 'rock') or
+        (player == 'scissors' and computer == 'paper')):
+        prompt('You win!')
+    elif ((player == 'rock' and computer == 'paper') or 
+        (player == 'paper' and computer == 'scissors') or
+        (player == 'scissors' and computer == 'rock')):
+        prompt('Computer wins!')
+    else:
+        prompt("It's a tie!")
 
-while choice not in VALID_CHOICES:
-    prompt("That's not a valid choice")
+while True:
+    prompt(f'Choose one: {", ".join(VALID_CHOICES)}')
     choice = input()
 
-computer_choice = random.choice(VALID_CHOICES)
+    while choice not in VALID_CHOICES:
+        prompt("That's not a valid choice")
+        choice = input()
 
-prompt(f'You chose {choice}, computer chose {computer_choice}')
+    computer_choice = random.choice(VALID_CHOICES)
 
-if ((choice == 'rock' and computer_choice == 'scissors') or 
-    (choice == 'paper' and computer_choice == 'rock') or
-    (choice == 'scissors' and computer_choice == 'paper')):
-    prompt('You win!')
-elif ((choice == 'rock' and computer_choice == 'paper') or 
-    (choice == 'paper' and computer_choice == 'scissors') or
-    (choice == 'scissors' and computer_choice == 'rock')):
-    prompt('Computer wins!')
-else:
-    prompt("It's a tie!")
-# Player Wins:
-# rock      beats scissors or
-# paper     beats rock     or
-# scissors  beats paper
+    prompt(f'You chose {choice}, computer chose {computer_choice}')
+
+    display_winner(choice, computer_choice)
+
+    prompt('Do you want to play again? (y/n)?')
+    answer = input().lower()
+    while True:
+        if answer.startswith('n') or answer.startswith('y'):
+            break
+
+        prompt('Please enter "y" or "n".')
+        answer = input().lower()
+
+    if answer[0] == 'n':
+        break
