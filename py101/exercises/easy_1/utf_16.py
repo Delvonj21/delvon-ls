@@ -1,11 +1,23 @@
 # Write a function that determines and returns the UTF-16 string value of a string passed in as an argument. The UTF-16 string value is the sum of the UTF-16 values of every character in the string. (You may use ord to determine the UTF-16 value of a character.)
 
-# 1.	Define a function to take a single argument (the string).
-# 2.	Initialize a variable to keep track of the total UTF-16 value sum.
-# 3.	Iterate over each character in the string:
-# •	Convert the character to its UTF-16 value.
-# •	Add this value to the running total.
-# 4.	Return the total sum of UTF-16 values.
+
+def utf16_value(string):
+    value_sum = 0
+    for char in string:
+        value_sum += ord(char)
+
+    return value_sum
 
 
+# These examples should all print True
+print(utf16_value('Four score') == 984)
+print(utf16_value('Launch School') == 1251)
+print(utf16_value('a') == 97)
+print(utf16_value('') == 0)
 
+# The next three lines demonstrate that the code
+# works with non-ASCII characters from the UTF-16
+# character set.
+OMEGA = "\u03A9"              # UTF-16 character 'Ω' (omega)
+print(utf16_value(OMEGA) == 937)
+print(utf16_value(OMEGA + OMEGA + OMEGA) == 2811)
